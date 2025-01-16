@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.container>div:first-child {
+    border-right: 1px black solid;
+    padding-right: 10px;
+}
+
+.container>div:first-child>div:first-child>div {
+    display: none;
+}
