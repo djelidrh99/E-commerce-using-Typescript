@@ -4,9 +4,9 @@ import Login from '@pages/Login';
 import Register from '@pages/Register';
 import Home from '@pages/Home';
 import About from '@pages/About';
-import Product from '@pages/Product';
 import MainLayout from '@layouts/mainLayout/MainLayout'
 import Error from '@pages/Error';
+import Products from '@pages/Product';
 
 
 
@@ -38,8 +38,8 @@ const router = createBrowserRouter([
                 element: <Register/>
             },
             {
-                path:"product/:prefix",
-                element: <Product/>,
+                path:"products/:prefix",
+                element: <Products/>,
                 loader:({params})=> {
                     if (typeof params.prefix !== "string" || (!(/^[a-z]+$/i).test(params.prefix))) {
                         throw new Response("bad request", {

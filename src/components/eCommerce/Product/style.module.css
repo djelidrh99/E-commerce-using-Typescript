@@ -1,0 +1,51 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 40px;
+
+}
+
+
+
+.imageContainer {
+    width: 150px;
+    height: 220px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    overflow: hidden;
+
+}
+
+
+
+.imageContainer  img {
+ width: 90%;
+ border-radius: 50%;
+ 
+}
+
+.box h5 {
+
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    
+}
+
+.box h6 {
+
+    font-size: 16px;
+    margin: 20px 0 10px;
+    
+}
+
+.box button {
+    width: 100%;
+    
+}
+    

@@ -1,7 +1,31 @@
+import Category from "@components/eCommerce/Category/Category"
+import {  Container, Row } from 'react-bootstrap'
+
+
 
 function Categories() {
   return (
-    <div>Categories</div>
+    <Container>
+     <Row>
+        <Category/>
+
+        <Category/>
+
+        <Category/>
+
+        <Category/>
+
+        <Category/>
+
+       <Category/>
+
+        <Category/>
+
+        <Category/>
+
+      </Row>
+      
+    </Container>
   )
 }
 

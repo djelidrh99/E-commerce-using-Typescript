@@ -1,0 +1,38 @@
+
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+
+}
+
+.imageContainer {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+    overflow: hidden;
+
+}
+
+
+
+.imageContainer  img {
+ width: 90%;
+ border-radius: 50%;
+ 
+}
+
+.box h5 {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+    
