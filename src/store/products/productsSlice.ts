@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchProducts } from './thunk/getProductssThunk';
+import { Tproducts ,Tloading} from '@type/type';
+
 
 // Define a type for the slice state
 interface productsState {
-    record: {id:number,title:string,prefix:string,img:string}[],
-    loading: 'idle' | 'pending' | 'succeeded' | 'failed',
-    error: null | string
+        record: Tproducts[],
+        loading: Tloading,
+        error: null | string
 }
 
 // Define the initial state using that type
@@ -21,14 +23,16 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers:(builder)=>{
-    builder.addCase(fetchProducts.pending,(state,action)=>{
+    builder.addCase(fetchProducts.pending,(state)=>{
         state.loading='pending'
+        state.error=null
 
     }).addCase(fetchProducts.fulfilled,(state,action)=>{
         state.loading='succeeded'
         state.record=action.payload
     }).addCase(fetchProducts.rejected,(state,action)=>{
         state.loading='failed'
+        state.error=action.payload as string
 
     })
 

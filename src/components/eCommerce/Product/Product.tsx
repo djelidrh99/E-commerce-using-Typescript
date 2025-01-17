@@ -1,18 +1,20 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
-import img from '@assets/img/cat.jpg'
 import style from './style.module.css'
+import { Tproducts } from '@type/type'
 
 const {imageContainer,box} = style
 
-function Product() {
+
+
+function Product({title,img,price}:Tproducts) {
   return (
-    <Col sm={6} md={6} xl={3} className={box} >
+    <Col xs={6} md={6} xl={3} className={box} >
         <div>
         <div className={imageContainer}>
-        <img src={img} alt="img" />
+        <img src={img} alt={title} />
         </div>
-        <h5>Title</h5>
-        <h6>45$</h6>
+        <h5>{title}</h5>
+        <h6>{price}</h6>
         <Button variant="primary">Add To Cart</Button>
         </div>
         </Col>

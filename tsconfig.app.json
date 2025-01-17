@@ -29,6 +29,7 @@
       "@store/*": ["src/store/*"],
       "@util/*": ["src/util/*"],
       "@styleS/*": ["src/styleS/*"],
+      "@type/*": ["src/type/*"],
 
     },
 

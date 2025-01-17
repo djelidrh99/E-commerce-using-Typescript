@@ -7,8 +7,15 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 40px;
+    transition: 0.3s;
 
 }
+
+.box:hover {
+    transform: scale(1.1);
+}
+
+
 
 .imageContainer {
     width: 180px;
@@ -34,6 +41,21 @@
     text-align: center;
     font-size: 14px;
     margin-top: 20px;
+}
+
+.box a {
+    color: black;
+}
+
+
+
+/* media query */
+@media (max-width: 500px) {
+ .imageContainer {
+    width: 140px;
+    height: 140px;
+
+ }   
 }
 
 

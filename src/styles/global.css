@@ -1,15 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
+a {
+    text-decoration: none;
+    text-transform: capitalize;
+    
+}
 
 a.active {
     color: white !important;

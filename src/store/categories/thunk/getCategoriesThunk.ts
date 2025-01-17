@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
+import { Tcategories } from "@type/type"
 import axios from "axios"
 import { isAxiosError } from "axios"
 
@@ -10,7 +11,7 @@ export const fetchCategories = createAsyncThunk(
 
         const {rejectWithValue}=thunkAPI
         try {
-            const response = await axios.get("http://localhost:5005/categories")
+            const response = await axios.get<Tcategories[]>("http://localhost:5005/categories")
 
             return response.data
             // return {id:categories.id,title:categories.title,prefix:categories.prefix,img:categories.img }

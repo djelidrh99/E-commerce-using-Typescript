@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchCategories } from './thunk/getCategoriesThunk';
+import { Tcategories ,Tloading} from '@type/type';
 
 // Define a type for the slice state
 interface CategoriesState {
-    record: {id:number,title:string,prefix:string,img:string}[],
-    loading: 'idle' | 'pending' | 'succeeded' | 'failed',
+    record: Tcategories[],
+    loading: Tloading,
     error: null | string
 }
 

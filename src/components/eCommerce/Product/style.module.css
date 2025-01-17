@@ -4,7 +4,12 @@
     gap: 10px;
     align-items: center;
     margin-bottom: 40px;
+    transition: 0.3s;
 
+}
+
+.box:hover {
+    transform: scale(1.1);
 }
 
 
@@ -24,8 +29,9 @@
 
 
 .imageContainer  img {
- width: 90%;
- border-radius: 50%;
+ width: 100%;
+ height: 100%;
+ 
  
 }
 
@@ -48,4 +54,15 @@
     width: 100%;
     
 }
+
+/* media query */
+@media (max-width: 500px) {
+    .imageContainer {
+       width: 120px;
+       height: 200px;
+      
+   
+    }   
+   }
+   
     
