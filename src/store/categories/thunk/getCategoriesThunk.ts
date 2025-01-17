@@ -1,20 +1,29 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
+import { isAxiosError } from "axios"
 
 
 
 export const fetchCategories = createAsyncThunk(
     'categories',
-    async () => {
-        try {
-            const categories = await axios.get("http://localhost:5005/categories")
+    async (_,thunkAPI) => {
 
-            return categories.data
+        const {rejectWithValue}=thunkAPI
+        try {
+            const response = await axios.get("http://localhost:5005/categories")
+
+            return response.data
             // return {id:categories.id,title:categories.title,prefix:categories.prefix,img:categories.img }
 
         }
-        catch {
-            console.log("error")
+        catch (error) {
+            if(isAxiosError(error)) {
+                return rejectWithValue(error.response?.data.massege)
+            } else {
+                return rejectWithValue("failed to conection")
+            }
+
+           
 
         }
       

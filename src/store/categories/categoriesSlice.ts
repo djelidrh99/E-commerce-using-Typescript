@@ -1,6 +1,4 @@
-import { RootState } from '@store/store';
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 import { fetchCategories } from './thunk/getCategoriesThunk';
 
 // Define a type for the slice state
@@ -23,14 +21,16 @@ export const categoriesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers:(builder)=>{
-    builder.addCase(fetchCategories.pending,(state,action)=>{
+    builder.addCase(fetchCategories.pending,(state)=>{
         state.loading='pending'
+        state.error=null
 
     }).addCase(fetchCategories.fulfilled,(state,action)=>{
         state.loading='succeeded'
         state.record=action.payload
     }).addCase(fetchCategories.rejected,(state,action)=>{
         state.loading='failed'
+        state.error =action.payload as string
 
     })
 
