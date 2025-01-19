@@ -24,8 +24,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    border: 1px white solid;
+    color: black;
+    font-weight: bold;
+    border: 1px black solid;
     font-size: 12px;
 }
 

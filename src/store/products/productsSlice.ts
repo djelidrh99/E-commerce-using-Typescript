@@ -21,7 +21,11 @@ export const productsSlice = createSlice({
   name: 'products',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    productsCleanUp:(state)=>{
+      state.record=[]
+    }
+  },
   extraReducers:(builder)=>{
     builder.addCase(fetchProducts.pending,(state)=>{
         state.loading='pending'
@@ -40,9 +44,8 @@ export const productsSlice = createSlice({
    
 })
 
-export const { } = productsSlice.actions
+export const {productsCleanUp} = productsSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
 
 
 export default productsSlice.reducer

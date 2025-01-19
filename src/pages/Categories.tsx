@@ -6,29 +6,33 @@ import Loading from "@components/common/Loading/Loading";
 import { fetchCategories } from "@store/categories/thunk/getCategoriesThunk";
 import { useEffect } from "react";
 import { useAppDispatch,useAppSelector } from "@store/Hooks/hooks";
+import GridList from "@components/common/GridList/GridList";
+import { Tcategories } from "@type/type";
 
 function Categories() {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, []);
-
   const categoriesList = useAppSelector(
     (state) => state.categories.record
   );
   const loading = useSelector((state: RootState) => state.categories.loading);
 
+  useEffect(() => {
+    if(categoriesList.length===0) {
+      dispatch(fetchCategories());
+    }
+    
+  }, [dispatch,categoriesList]);
+
+  
+
   return (
     <Container>
+            <Loading status={loading} error={null}>
       <Row>
-        {loading === "pending" ? (
-          <Loading />
-        ) : (
-          categoriesList.map((item) => {
-            return <Category key={item.id} title={item.title} img={item.img} prefix={item.prefix} />;
-          })
-        )}
+        
+        <GridList records={categoriesList} callBackFunc={(item: Tcategories)=> <Category   title={item.title} img={item.img} prefix={item.prefix} />}/>
       </Row>
+      </Loading>
     </Container>
   );
 }

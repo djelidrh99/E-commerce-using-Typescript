@@ -4,23 +4,25 @@ import { NavLink } from "react-router-dom";
 import { Tcategories } from "@type/type";
 
 
-const { imageContainer, box } = style;
+const { imageContainer,boxContainer } = style;
 
 
-function Category({ title, img,prefix }: Tcategories) {
+function Category({ title, img,prefix}: Tcategories) {
   
  
  
    
   return (
-    <Col xs={6}  md={6} xl={3} className={box}>
+    
       <NavLink to={`/categories/products/${prefix}`}>
+      <div className={boxContainer}>
       <div className={imageContainer}>
-        <img src={img} alt="img" />
+        <img title={title} src={img} alt="img" />
       </div>
       <h5>{title}</h5>
+      </div>
       </NavLink>
-    </Col>
+    
   );
 }
 
