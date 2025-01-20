@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useAppDispatch,useAppSelector } from "@store/Hooks/hooks";
 import GridList from "@components/common/GridList/GridList";
 import { Tcategories } from "@type/type";
+import Heading from "@components/common/Heading/Heading";
 
 function Categories() {
   const dispatch = useAppDispatch();
@@ -27,6 +28,7 @@ function Categories() {
 
   return (
     <Container>
+      <Heading>Categories</Heading>
             <Loading status={loading} error={null}>
       <Row>
         

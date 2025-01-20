@@ -9,7 +9,7 @@ export const fetchProducts = createAsyncThunk(
     async (_,thunkAPI) => {
         const {rejectWithValue}=thunkAPI
         try {
-            const products = await axios.get<Tproducts[]>("http://localhost:5005/products")
+            const products = await axios.get<Tproducts[]>("/products")
 
             return products.data
             // return {id:products.id,title:products.title,prefix:products.prefix,img:products.img }

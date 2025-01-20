@@ -39,7 +39,9 @@
 
 .boxContainer button {
   width: 100%;
+  transition: 0.3;
 }
+
 
 /* media query */
 @media (max-width: 500px) {
@@ -52,4 +54,5 @@
     width: 130px;
   }
 }
+
 

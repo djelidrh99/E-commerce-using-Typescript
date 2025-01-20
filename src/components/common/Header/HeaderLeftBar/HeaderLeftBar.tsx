@@ -9,6 +9,7 @@ const {container}=style
 
 export default function HeaderLeftBar() {
   const count = useAppSelector(getTotalCountSelector)
+  
 
  
   return (
