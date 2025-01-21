@@ -33,6 +33,21 @@ export const cartSlice = createSlice({
       }else {
         state.items[actions.payload]=1
       }
+    },
+    deleteProductFromShopingCart:(state,action)=>{
+      const updateCart = (state.productFullInfo).filter((item)=>{
+        return item.id !== action.payload
+      })
+      delete state.items[action.payload]
+
+      state.productFullInfo=updateCart
+
+    },
+    updateItems:(state,action)=>{
+      const count = Number(action.payload.newCount)
+      state.items[action.payload.id]=count
+      
+
     }
   },
   extraReducers:(builser)=>{
@@ -54,7 +69,7 @@ export const cartSlice = createSlice({
    
 })
 
-export const {addProductToCart} = cartSlice.actions
+export const {addProductToCart,deleteProductFromShopingCart,updateItems} = cartSlice.actions
 
 
 

@@ -1,14 +1,38 @@
 import { Tproducts } from "@type/type";
 import style from "./style.module.css";
 import { Button, Form } from "react-bootstrap";
-import { useAppSelector } from "@store/Hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@store/Hooks/hooks";
+import { deleteProductFromShopingCart } from "@store/Cart/carteSlice";
+import { updateItems } from "@store/Cart/carteSlice";
+
+
 const { shopingContainer, removeButton, leftSide, imgContainer } = style;
 
 
+
 const CartShoping = ({id,title,price,img}:Tproducts) => {
+
+console.log("render")  
   const items =useAppSelector(state=>state.cart.items)
+  const dispatch= useAppDispatch()
+
+
+
+  const handelDelete = (index:number) =>{
+    dispatch(deleteProductFromShopingCart(index))
+  }
+
+
+
+  
+
+
+
+
   return (
-    <div className={shopingContainer}>
+    
+      
+      <div className={shopingContainer}>
       <div className={leftSide}>
         <div className={imgContainer}>
           <img
@@ -21,7 +45,7 @@ const CartShoping = ({id,title,price,img}:Tproducts) => {
           <h6>{price}</h6>
           <div style={{ flexGrow: 1 }}></div>
 
-          <Button variant="secondary" className={removeButton}>
+          <Button onClick={()=>{handelDelete(id)}} variant="secondary" className={removeButton}>
             Remove
           </Button>
         </div>
@@ -29,7 +53,13 @@ const CartShoping = ({id,title,price,img}:Tproducts) => {
 
       <div>
         <h5>Quantity</h5>
-        <Form.Select defaultValue={items[id]} aria-label="Default select example">
+        <Form.Select
+        onChange={(e)=>{
+          const newCount = e.target.value
+           dispatch(updateItems({id,newCount}))
+        }}
+        
+        defaultValue={items[id]} aria-label="Default select example">
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
@@ -38,6 +68,9 @@ const CartShoping = ({id,title,price,img}:Tproducts) => {
         </Form.Select>
       </div>
     </div>
+     
+     
+   
   );
 };
 

@@ -1,7 +1,7 @@
 import Heading from '@components/common/Heading/Heading'
 import CartShoping from '@components/eCommerce/CartShoping/CartShoping'
 import SubTotal from '@components/eCommerce/CartShoping/SubTotal/SubTotal'
-import { Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { fetchShopingCart } from '@store/Cart/thunk/getShopingCartThunk'
 import { useAppDispatch, useAppSelector } from '@store/Hooks/hooks'
 import { useEffect } from 'react'
@@ -25,7 +25,7 @@ const Carte = () => {
 
       
         <Heading>Cart</Heading>
-        {shopingList.map((item)=>{
+        {shopingList.length === 0 ?<div style={{textAlign:"center",marginBottom:"40px"}}>No Product in Shoping Cart</div>   :  shopingList.map((item)=>{
           return (
             <CartShoping key={item.id} id={item.id} title={item.title} img={item.img} price={item.price} />
           )
