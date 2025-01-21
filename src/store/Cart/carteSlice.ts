@@ -1,11 +1,14 @@
+import { fetchShopingCart } from '@store/Cart/thunk/getShopingCartThunk';
 import { createSlice } from '@reduxjs/toolkit'
 import { Tproducts ,Tloading} from '@type/type';
 
 
 // Define a type for the slice state
-interface cartState {
+export interface cartState {
         items: {[key:number]:number },
         productFullInfo: Tproducts[],
+        loading:Tloading,
+        error:null|string
         
 }
 
@@ -13,6 +16,8 @@ interface cartState {
 const initialState:cartState = {
     items:{},
     productFullInfo:[] ,
+    loading:"idle",
+    error:null
     
 }
 
@@ -30,6 +35,21 @@ export const cartSlice = createSlice({
       }
     }
   },
+  extraReducers:(builser)=>{
+    builser.addCase(fetchShopingCart.pending,(state)=>{
+      state.loading="pending"
+      state.error=null
+    }).addCase(fetchShopingCart.fulfilled,(state,action)=>{
+      state.loading="succeeded"
+      state.error=null
+      state.productFullInfo=action.payload
+
+    }).addCase(fetchShopingCart.rejected,(state,action)=>{
+      state.loading="failed"
+      state.error=action.payload as string
+
+    })
+  }
   
    
 })

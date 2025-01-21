@@ -7,12 +7,14 @@ type HeaderCounterType = {
   title: string;
   iconSvg: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   count?: number;
+  navTo?:()=> void
 };
 
 export default function HeaderCounter({
   title,
   iconSvg,
   count,
+  navTo
 }: HeaderCounterType) {
   const [isAnimate, setIsAnimate] = useState(false);
 
@@ -31,7 +33,7 @@ export default function HeaderCounter({
   }, [count]);
 
   return (
-    <div className={container}>
+    <div onClick={navTo} className={container}>
       <div className={iconWrraper}>
         {iconSvg({})}
         <div className={isAnimate ? cartCounterAnimation : CartCounter}>

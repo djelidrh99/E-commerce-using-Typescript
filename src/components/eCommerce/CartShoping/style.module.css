@@ -1,0 +1,63 @@
+.shopingContainer {
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+}
+
+.shopingContainer h5 {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 17px;
+    text-transform: capitalize;
+}
+
+
+
+.leftSide {
+    display: flex;
+    gap: 20px;
+
+}
+
+.leftSide .imgContainer {
+    height: 200px;
+    
+}
+
+.leftSide .imgContainer img {
+    height: 100%;
+}
+
+
+
+.leftSide h6 {
+    font-size: 15px;
+
+}
+
+
+.leftSide>div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+.removeButton {
+   
+}
+
+
+
+@media (max-width: 500px) {
+    .leftSide .imgContainer {
+        height: 140px;
+        
+    }
+
+}

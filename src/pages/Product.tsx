@@ -36,7 +36,8 @@ function Products() {
     <Container>
       <Heading>{`${params.prefix}'s Products`} </Heading>
       <Loading status={loading} error={null}>
-        <Row>
+        <Row >
+          
         <GridList records={ProductByPrefix} callBackFunc={(item: Tproducts)=> <Product   title={item.title} img={item.img} id={item.id} price={item.price} max={item.max}   />}/>
 
         </Row>

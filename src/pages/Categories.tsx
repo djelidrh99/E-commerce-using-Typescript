@@ -31,7 +31,7 @@ function Categories() {
       <Heading>Categories</Heading>
             <Loading status={loading} error={null}>
       <Row>
-        
+      
         <GridList records={categoriesList} callBackFunc={(item: Tcategories)=> <Category   title={item.title} img={item.img} prefix={item.prefix} />}/>
       </Row>
       </Loading>
