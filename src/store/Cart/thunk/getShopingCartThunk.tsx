@@ -8,7 +8,7 @@ import axios, { isAxiosError } from "axios";
 export const fetchShopingCart = createAsyncThunk('shopingCart',
      async (_,thunkAPI)=> {
 
-        const {getState,rejectWithValue}=thunkAPI
+        const {getState,rejectWithValue,fulfillWithValue}=thunkAPI
 
         const {cart} = getState() as RootState
         const items = Object.keys(cart.items)
@@ -16,18 +16,18 @@ export const fetchShopingCart = createAsyncThunk('shopingCart',
         const idList =items.map((item)=>{
          return `id=${item}&`  
         }).join("")
-
+            
+        if(!idList) {
+            return fulfillWithValue([])
+        }
         
 
         try {
-            if(idList) {
                 const response = await axios.get(`/products?${idList}`)
 
              return response.data
 
-            } else {
-                return []
-            }
+            
             
 
         }     catch (error) {
