@@ -18,7 +18,7 @@ const SubTotal = ({shopingList}:TtotalProps) => {
   return (
     <div style={{display:"flex",justifyContent:'space-between',alignItems:"center",marginTop:"10px",paddingBottom:"40px"}}>
         <h5  style={{fontWeight:"bold",fontSize:"17px"}}>Total</h5>
-        <h5 style={{fontWeight:"bold",fontSize:"17px"}}>{TotalPrice}</h5>
+        <h5 style={{fontWeight:"bold",fontSize:"17px"}}>{TotalPrice.toFixed(0)}$</h5>
 
     </div>
   )
