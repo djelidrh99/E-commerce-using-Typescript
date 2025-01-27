@@ -8,6 +8,7 @@ import MainLayout from '@layouts/mainLayout/MainLayout'
 import Error from '@pages/Error';
 import Products from '@pages/Product';
 import Cart from '@pages/Cart';
+import Wishlist from '@pages/Wishlist';
 
 
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path:"about",
                 element: <About/>
+            },
+            {
+                path:"wishlist",
+                element: <Wishlist/>
             },
             {
                 path:"cart",

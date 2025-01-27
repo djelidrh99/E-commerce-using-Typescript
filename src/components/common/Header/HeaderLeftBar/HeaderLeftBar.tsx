@@ -15,12 +15,16 @@ export default function HeaderLeftBar() {
   const navToCart= ()=>{
      navigate("cart")
   }
+
+  const navToWishlist = ()=>{
+    navigate("wishlist")
+  }
   
 
  
   return (
     <div className={container}>
-        <HeaderCounter title={"wishlist"} iconSvg={WishlistIcon}/>
+        <HeaderCounter navTo={navToWishlist} title={"wishlist"} iconSvg={WishlistIcon}/>
         
         <HeaderCounter navTo={navToCart}  count={count} title={"Cart"} iconSvg={CartIcon}/>
         

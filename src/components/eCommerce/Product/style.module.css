@@ -27,13 +27,16 @@
   height: 100%;
 }
 
-.imageContainer>img:last-child {
+.likedContainer{
   width: 25px;
     height: 25px;
     position: absolute;
     top: 15px;
     right: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .boxContainer h5 {

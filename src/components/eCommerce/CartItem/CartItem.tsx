@@ -1,5 +1,6 @@
 import { Tproducts } from "@type/type";
 import CartShoping from "../CartShoping/CartShoping";
+import Empty from "@components/common/Empty/Empty";
 
 type TshopingCart = { shopingList: Tproducts[] };
 const CartItem = ({
@@ -11,9 +12,7 @@ const CartItem = ({
   return (
     <>
       {shopingList.length === 0 ? (
-        <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          No Product in Shoping Cart
-        </div>
+        <Empty section={"Cart"}/>
       ) : (
         shopingList.map((item) => {
           return (

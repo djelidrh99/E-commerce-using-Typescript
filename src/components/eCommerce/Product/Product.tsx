@@ -3,24 +3,20 @@ import style from "./style.module.css";
 import { Tproducts } from "@type/type";
 import { addProductToCart } from "@store/Cart/carteSlice";
 import { useAppDispatch, useAppSelector } from "@store/Hooks/hooks";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
-import dislike from "@assets/svg/like.svg";
-import like from "@assets/svg/like-fill.svg";
-import {
-  addProductTowishlist,
-  deleteProductFromwishlist,
-} from "@store/Wishlist/wishlistSlice";
+import LikeFill from "@assets/svg/like.svg?react";
+import Like from "@assets/svg/like-fill.svg?react";
+import { getToggleLike } from "@store/Wishlist/thunk/getToggleLike";
 
-const { imageContainer, boxContainer } = style;
+const { imageContainer, boxContainer, likedContainer } = style;
 
-const Product = ({ title, img, price, id, max }: Tproducts) => {
+const Product = ({ title, img, price, id, max, isLiked }: Tproducts) => {
+  console.log("render");
   const dispatch = useAppDispatch();
   const items = useAppSelector((state) => state.cart.items);
-  const whishlist = useAppSelector((state) => state.wishlist.wishlistItems);
   const [isButtonClicked, setButtonIsClicked] = useState(false);
-
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const buttonSetTime = setTimeout(() => {
@@ -30,47 +26,40 @@ const Product = ({ title, img, price, id, max }: Tproducts) => {
     return () => clearInterval(buttonSetTime);
   }, [isButtonClicked]);
 
-  useEffect(() => {
-    checkLikeList(id);
-  }, []);
-
-  const checkLikeList = (index: number) => {
-     (whishlist.includes(index)) ? setIsLiked(true) : setIsLiked(false)
-      
-  };
-
   const handlerAddToCart = () => {
     dispatch(addProductToCart(id));
     setButtonIsClicked(true);
   };
 
   const handleLike = (index: number) => {
-    setIsLiked((prev) => !prev);
-    isLiked ? dispatch(deleteProductFromwishlist(index)) : dispatch(addProductTowishlist(index))
+    setIsLoading(true);
+    if (isLoading) {
+      return;
+    }
 
+    dispatch(getToggleLike(index)).then(() => {
+      setIsLoading(false);
+    });
   };
 
   return (
     <div className={boxContainer}>
       <div className={imageContainer}>
         <img title={title} src={img} alt={title} />
-        {isLiked ? (
-          <img
-            onClick={() => {
-              handleLike(id);
-            }}
-            src={like}
-            alt={like}
-          />
-        ) : (
-          <img
-            onClick={() => {
-              handleLike(id);
-            }}
-            src={dislike}
-            alt={dislike}
-          />
-        )}
+        <div
+          className={likedContainer}
+          onClick={() => {
+            handleLike(id);
+          }}
+        >
+          {isLoading ? (
+            <Spinner animation="border" size="sm" />
+          ) : isLiked ? (
+            <Like />
+          ) : (
+            <LikeFill />
+          )}
+        </div>
       </div>
       <h5>{title}</h5>
       <h6>{price}</h6>
