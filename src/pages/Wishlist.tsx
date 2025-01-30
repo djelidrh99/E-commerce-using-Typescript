@@ -6,10 +6,10 @@ import Empty from "@components/common/Empty/Empty";
 import useWishlist from "@hooks/useWishlist";
 
 const Wishlist = () => {
-const {loading,wishlistFullInfo}= useWishlist()
+const {loading,wishlistFullInfo,error}= useWishlist()
 
   return (
-    <FullContainer headingTitle={"Whishlist"} loading={loading} error={null}>
+    <FullContainer headingTitle={"Whishlist"} loading={loading} error={error} type="products">
       {wishlistFullInfo.length === 0 ? (
         <Empty section={"Wishlist"} />
       ) : (

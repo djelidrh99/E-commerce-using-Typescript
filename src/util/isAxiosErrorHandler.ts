@@ -3,7 +3,7 @@ import { isAxiosError } from "axios"
 const isAxiosErrorHandler = (error:unknown) => {
 
  if(isAxiosError(error)) {
-                return (error.response?.data.massege)
+                return (error?.message)
             } else {
                 return ("failed to conection")
             }

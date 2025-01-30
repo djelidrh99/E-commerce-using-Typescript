@@ -18,6 +18,7 @@ export const fetchCategories = createAsyncThunk(
 
         }
         catch (error) {
+            
            return rejectWithValue(isAxiosErrorHandler(error))
            
 

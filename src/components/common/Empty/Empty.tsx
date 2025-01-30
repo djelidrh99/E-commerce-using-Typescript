@@ -1,9 +1,9 @@
 
+import LottieHandler from '@components/feedback/LottieHandler/LottieHandler'
+
 const Empty = ({section}:{section:string}) => {
   return (
-    <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          {`Your ${section} is empty`}
-        </div>
+    <LottieHandler type={'empty'} message={`Your ${section} is empty`}/>
   )
 }
 

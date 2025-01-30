@@ -1,31 +1,43 @@
-import Lottie from "lottie-react"
-import loadinAnimation from '@assets/lottie/animations/loading.json'
-import loadinErrorAnimation from '@assets/lottie/animations/loadingError.json'
-import style from "./style.module.css";
 import { Tloading } from "@type/type";
+import CategoriesSkeleton from "@components/feedback/Skeleton/CategoriesSkeleton";
+import CartSkeleton from "@components/feedback/Skeleton/CartSkeleton";
+import ProductsSkeleton from "@components/feedback/Skeleton/ProductsSkeleton";
+import LottieHandler from "@components/feedback/LottieHandler/LottieHandler";
+
+
+const skeletonTypes = {
+  categories: CategoriesSkeleton,
+  products: ProductsSkeleton,
+  cart: CartSkeleton
+}
 
 type TloadingPage ={
   status:Tloading;
   error:null|string;
-  children: React.ReactNode
+  children: React.ReactNode,
+  type: keyof typeof skeletonTypes
 }
 
-const {loadinContainer } = style;
 
-function Loading({status,error,children}:TloadingPage) {
+
+
+
+function Loading({status,error,children,type}:TloadingPage) {
+
+  const SkeleltonComponent = skeletonTypes[type]
 
   if (status==="pending") {
     return (
-      <div className={loadinContainer}>
-          <Lottie animationData={loadinAnimation}/>
-        </div>
+
+     <SkeleltonComponent/>
+
+  
     )
   }
    if(status==="failed") {
+    console.log(error)
     return (
-      <div className={loadinContainer}>
-          <Lottie animationData={loadinErrorAnimation}/>
-        </div>
+      <LottieHandler type={"error"} message={error as string} />
     )
   }
   return (

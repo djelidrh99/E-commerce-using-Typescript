@@ -8,7 +8,7 @@ import axios from "axios";
 export const fetchWishlist = createAsyncThunk('shopingCart',
      async (_,thunkAPI)=> {
 
-        const {rejectWithValue,signal}=thunkAPI
+        const {rejectWithValue,signal,fulfillWithValue}=thunkAPI
 
         
             
@@ -17,6 +17,9 @@ export const fetchWishlist = createAsyncThunk('shopingCart',
 
         try {
                 const response = await axios.get(`/wishlist?userId=1`,{signal})
+                if(!(response.data).length) {
+                   return fulfillWithValue([]) 
+                }
                 const idList =response.data.map((item:{userId:number,productId:number})=>{
                     return `id=${item.productId}&`  
                    }).join("")

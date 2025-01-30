@@ -9,7 +9,7 @@ const useProducts = () => {
     const dispatch = useAppDispatch();
   const location = useLocation();
   const ProductList = useAppSelector((state) => state.products.record);
-  const loading = useAppSelector((state) => state.products.loading);
+  const {error,loading} = useAppSelector((state) => state.products);
   const wishlistItem =useAppSelector(state=>state.wishlist.wishlistItems)
   const params = useParams();
   const productsCategories = params.prefix
@@ -33,7 +33,7 @@ const useProducts = () => {
     return {...item,isLiked:wishlistItem.includes(item.id)}
   })
   
-    return {loading,productFullInfo,productsCategories}
+    return {loading,productFullInfo,productsCategories,error}
 }
 
 export default useProducts

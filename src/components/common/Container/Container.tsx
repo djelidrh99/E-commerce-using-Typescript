@@ -7,15 +7,15 @@ type ContainerProps= {
     headingTitle:string;
     loading:Tloading;
     children:React.ReactNode;
-    error:null|string
-
+    error:null|string,
+    type: "categories" | "products" | "cart"
 }
 
-const FullContainer = ({headingTitle,loading,children,error}:ContainerProps) => {
+const FullContainer = ({headingTitle,loading,children,error,type}:ContainerProps) => {
   return (
     <Container>
     <Heading title={headingTitle}/>
-    <Loading status={loading} error={error}>
+    <Loading status={loading} error={error}  type={type}>
       <Row >
         
       {children}

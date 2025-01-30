@@ -9,7 +9,7 @@ const useWishlist = () => {
   const wishlistPoduct = useAppSelector(
     (state) => state.wishlist.productFullInfo
   );
-  const loading = useAppSelector((state) => state.wishlist.loading);
+  const {loading,error} = useAppSelector((state) => state.wishlist);
 
   useEffect(() => {
     const promise = dispatch(fetchWishlist());
@@ -23,7 +23,7 @@ const useWishlist = () => {
     return { ...item, isLiked: wishlistItem.includes(item.id) };
   });
 
-  return { loading, wishlistFullInfo };
+  return { loading, wishlistFullInfo,error };
 };
 
 export default useWishlist;

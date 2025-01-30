@@ -10,7 +10,7 @@ const {handelQuantity,error,loading,shopingList} = useCart()
  
   return (
     <>
-      <Loading status={loading} error={error}>
+      <Loading status={loading} error={error}  type={"cart"}>
         <Heading title="Cart"/>
 
         <CartItem shopingList={shopingList} handelQuantity={handelQuantity}  />

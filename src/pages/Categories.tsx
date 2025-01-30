@@ -5,10 +5,10 @@ import FullContainer from "@components/common/Container/Container";
 import useCategories from "@hooks/useCategories";
 
 function Categories() {
-const {categoriesList,loading}=useCategories()
+const {categoriesList,loading,error}=useCategories()
 
   return (
-    <FullContainer headingTitle={`Categories`} loading={loading} error={null}>
+    <FullContainer headingTitle={`Categories`} loading={loading} error={error}  type={"categories"}>
       <GridList
         records={categoriesList}
         callBackFunc={(item: Tcategories) => (

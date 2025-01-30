@@ -6,7 +6,8 @@ import { categoriesCleanUp } from "@store/categories/categoriesSlice";
 const useCategories = () => {
   const dispatch = useAppDispatch();
   const categoriesList = useAppSelector((state) => state.categories.record);
-  const loading = useAppSelector((state) => state.categories.loading);
+  const {error,loading} = useAppSelector((state) => state.categories);
+  
 
   useEffect(() => {
     const promise=dispatch(fetchCategories());
@@ -17,7 +18,7 @@ const useCategories = () => {
     };
   }, [dispatch]);
 
-  return {categoriesList,loading};
+  return {categoriesList,loading,error};
 };
 
 export default useCategories;

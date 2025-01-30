@@ -6,13 +6,14 @@ import useProducts from "@hooks/useProducts";
 
 const Products = () => {
 
-  const {loading,productFullInfo,productsCategories}=useProducts()
+  const {loading,productFullInfo,productsCategories,error}=useProducts()
 
   return (
     <FullContainer
       headingTitle={`${productsCategories}'s Products`}
       loading={loading}
-      error={null}
+      error={error}
+      type="products"
     >
       <GridList
         records={productFullInfo}
