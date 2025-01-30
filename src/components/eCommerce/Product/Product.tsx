@@ -3,7 +3,7 @@ import style from "./style.module.css";
 import { Tproducts } from "@type/type";
 import { addProductToCart } from "@store/Cart/carteSlice";
 import { useAppDispatch, useAppSelector } from "@store/Hooks/hooks";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import LikeFill from "@assets/svg/like.svg?react";
 import Like from "@assets/svg/like-fill.svg?react";
@@ -11,8 +11,7 @@ import { getToggleLike } from "@store/Wishlist/thunk/getToggleLike";
 
 const { imageContainer, boxContainer, likedContainer } = style;
 
-const Product = ({ title, img, price, id, max, isLiked }: Tproducts) => {
-  console.log("render");
+const Product = memo(({ title, img, price, id, max, isLiked }: Tproducts) => {
   const dispatch = useAppDispatch();
   const items = useAppSelector((state) => state.cart.items);
   const [isButtonClicked, setButtonIsClicked] = useState(false);
@@ -26,8 +25,8 @@ const Product = ({ title, img, price, id, max, isLiked }: Tproducts) => {
     return () => clearInterval(buttonSetTime);
   }, [isButtonClicked]);
 
-  const handlerAddToCart = () => {
-    dispatch(addProductToCart(id));
+  const handlerAddToCart = (index: number) => {
+    dispatch(addProductToCart(index));
     setButtonIsClicked(true);
   };
 
@@ -39,6 +38,8 @@ const Product = ({ title, img, price, id, max, isLiked }: Tproducts) => {
 
     dispatch(getToggleLike(index)).then(() => {
       setIsLoading(false);
+    }).catch(()=>{
+      setIsLoading(false)
     });
   };
 
@@ -53,7 +54,7 @@ const Product = ({ title, img, price, id, max, isLiked }: Tproducts) => {
           }}
         >
           {isLoading ? (
-            <Spinner animation="border" size="sm" />
+            <Spinner animation="border" size="sm" variant="primary"/>
           ) : isLiked ? (
             <Like />
           ) : (
@@ -64,7 +65,9 @@ const Product = ({ title, img, price, id, max, isLiked }: Tproducts) => {
       <h5>{title}</h5>
       <h6>{price}</h6>
       <Button
-        onClick={handlerAddToCart}
+        onClick={() => {
+          handlerAddToCart(id);
+        }}
         disabled={isButtonClicked || items[id] >= (max as number)}
         variant="primary"
       >
@@ -83,6 +86,6 @@ const Product = ({ title, img, price, id, max, isLiked }: Tproducts) => {
       </Button>
     </div>
   );
-};
+});
 
 export default Product;

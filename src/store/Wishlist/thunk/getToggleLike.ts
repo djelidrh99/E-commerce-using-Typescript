@@ -1,14 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios, { isAxiosError } from "axios";
+import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
+import axios from "axios";
 
 export const getToggleLike  = createAsyncThunk(
   "wishlist/getToggleLike",
   async (id:number, thunkAPI) => {
-    const {  rejectWithValue } = thunkAPI;
+    const {  rejectWithValue ,signal} = thunkAPI;
 
 
     try {
-        const isProductexist= await axios.get(`/wishlist?userId=1&productId=${id}`)
+        const isProductexist= await axios.get(`/wishlist?userId=1&productId=${id}`,{signal})
         if(isProductexist.data.length>0) {
             await axios.delete(`/wishlist/${isProductexist.data[0].id}`)
             return {type:"remove", id}
@@ -20,11 +21,7 @@ export const getToggleLike  = createAsyncThunk(
        
 
     } catch (error) {
-      if (isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.massege || error.message);
-      } else {
-        return rejectWithValue("failed to conection");
-      }
+      return rejectWithValue(isAxiosErrorHandler(error))
     }
   }
 );

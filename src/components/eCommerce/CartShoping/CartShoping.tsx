@@ -22,7 +22,6 @@ const CartShoping = memo(
       id: number
     ) => void;
   }) => {
-    console.log("render");
     const items = useAppSelector((state) => state.cart.items);
     const dispatch = useAppDispatch();
 

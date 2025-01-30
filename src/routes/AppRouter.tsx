@@ -1,55 +1,59 @@
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
-import Categories from '@pages/Categories';
-import Login from '@pages/Login';
-import Register from '@pages/Register';
-import Home from '@pages/Home';
-import About from '@pages/About';
-import MainLayout from '@layouts/mainLayout/MainLayout'
-import Error from '@pages/Error';
-import Products from '@pages/Product';
-import Cart from '@pages/Cart';
-import Wishlist from '@pages/Wishlist';
+import { lazy, Suspense } from 'react';
+const Categories= lazy(()=>import('@pages/Categories')) 
+const Login= lazy(()=>import('@pages/Login')) 
+const Register= lazy(()=>import('@pages/Register')) 
+const Home= lazy(()=>import('@pages/Home')) 
+const About= lazy(()=>import('@pages/About')) 
+const MainLayout= lazy(()=>import('@layouts/mainLayout/MainLayout')) 
+const Error= lazy(()=>import('@pages/Error')) 
+const Products= lazy(()=>import('@pages/Products')) 
+const Cart= lazy(()=>import('@pages/Cart')) 
+const Wishlist= lazy(()=>import('@pages/Wishlist')) 
+
+
+
 
 
 
 const router = createBrowserRouter([
     {
         path:"/",
-    element:<MainLayout/>,
-    errorElement:<Error/>,
+    element: <Suspense fallback={<div>Loading</div>}><MainLayout/></Suspense>, 
+    errorElement:<Suspense><Error/></Suspense>,
     children: [
 
             {
                 index:true,
-                element: <Home/>
+                element: <Suspense fallback={<div>Loading</div>}><Home/></Suspense>
             },
             {
                 path:"about",
-                element: <About/>
+                element: <Suspense fallback={<div>Loading</div>}><About/></Suspense>
             },
             {
                 path:"wishlist",
-                element: <Wishlist/>
+                element: <Suspense fallback={<div>Loading</div>}><Wishlist/></Suspense>
             },
             {
                 path:"cart",
-                element: <Cart/>
+                element: <Suspense fallback={<div>Loading</div>}><Cart/></Suspense>
             },
             {
                 path:"categories",
-                element: <Categories/>
+                element: <Suspense fallback={<div>Loading</div>}><Categories/></Suspense>
             },
             {
                 path:"login",
-                element: <Login/>
+                element: <Suspense fallback={<div>Loading</div>}><Login/></Suspense>
             },
             {
                 path:"register",
-                element: <Register/>
+                element: <Suspense fallback={<div>Loading</div>}><Register/></Suspense>
             },
             {
                 path:"categories/products/:prefix",
-                element: <Products/>,
+                element: <Suspense fallback={<div>Loading</div>}><Products/></Suspense>,
                 loader:({params})=> {
                     if (typeof params.prefix !== "string" || (!(/^[a-z]+$/i).test(params.prefix))) {
                         throw new Response("bad request", {

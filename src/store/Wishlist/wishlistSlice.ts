@@ -27,6 +27,9 @@ export const wishlistSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
+    wishlistCleanUp:(state)=>{
+     state.productFullInfo=[]
+    }
  
   },
   extraReducers:(builser)=>{
@@ -66,7 +69,7 @@ export const wishlistSlice = createSlice({
    
 })
 
-export const {} = wishlistSlice.actions
+export const {wishlistCleanUp} = wishlistSlice.actions
 
 
 

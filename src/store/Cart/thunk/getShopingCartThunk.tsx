@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@store/store";
-import axios, { isAxiosError } from "axios";
+import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
+import axios from "axios";
 
 
 
@@ -8,11 +9,10 @@ import axios, { isAxiosError } from "axios";
 export const fetchShopingCart = createAsyncThunk('shopingCart',
      async (_,thunkAPI)=> {
 
-        const {getState,rejectWithValue,fulfillWithValue}=thunkAPI
+        const {getState,rejectWithValue,fulfillWithValue,signal}=thunkAPI
 
         const {cart} = getState() as RootState
         const items = Object.keys(cart.items)
-        console.log(items)
         const idList =items.map((item)=>{
          return `id=${item}&`  
         }).join("")
@@ -23,7 +23,7 @@ export const fetchShopingCart = createAsyncThunk('shopingCart',
         
 
         try {
-                const response = await axios.get(`/products?${idList}`)
+                const response = await axios.get(`/products?${idList}`,{signal})
 
              return response.data
 
@@ -31,12 +31,7 @@ export const fetchShopingCart = createAsyncThunk('shopingCart',
             
 
         }     catch (error) {
-                    if(isAxiosError(error)) {
-                        return rejectWithValue(error.response?.data.massege || error.message)
-                    } else {
-                        return rejectWithValue("failed to conection")
-                    }
-        
+            return rejectWithValue(isAxiosErrorHandler(error))
                    
         
                 }

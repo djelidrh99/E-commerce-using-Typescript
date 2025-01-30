@@ -14,7 +14,7 @@ type ContainerProps= {
 const FullContainer = ({headingTitle,loading,children,error}:ContainerProps) => {
   return (
     <Container>
-    <Heading>{headingTitle} </Heading>
+    <Heading title={headingTitle}/>
     <Loading status={loading} error={error}>
       <Row >
         

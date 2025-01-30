@@ -27,7 +27,6 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProductToCart:(state,actions)=>{
-      console.log(actions.payload)
       if(state.items[actions.payload]) {
         state.items[actions.payload]++
       }else {
@@ -48,6 +47,9 @@ export const cartSlice = createSlice({
       state.items[action.payload.id]=count
       
 
+    },
+    cartProductsCleanUp:(state)=>{
+      state.productFullInfo=[]
     }
   },
   extraReducers:(builser)=>{
@@ -69,7 +71,7 @@ export const cartSlice = createSlice({
    
 })
 
-export const {addProductToCart,deleteProductFromShopingCart,updateItems} = cartSlice.actions
+export const {addProductToCart,deleteProductFromShopingCart,updateItems,cartProductsCleanUp} = cartSlice.actions
 
 
 

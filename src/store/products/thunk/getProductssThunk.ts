@@ -1,28 +1,23 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { Tproducts } from "@type/type"
-import axios, { isAxiosError } from "axios"
+import isAxiosErrorHandler from "@util/isAxiosErrorHandler"
+import axios from "axios"
 
 
 
 export const fetchProducts = createAsyncThunk(
     'products',
     async (_,thunkAPI) => {
-        const {rejectWithValue}=thunkAPI
+        const {rejectWithValue,signal}=thunkAPI
         try {
-            const products = await axios.get<Tproducts[]>("/products")
+            const products = await axios.get<Tproducts[]>("/products",{signal})
 
             return products.data
             // return {id:products.id,title:products.title,prefix:products.prefix,img:products.img }
 
         }
          catch (error) {
-                    if(isAxiosError(error)) {
-                        return rejectWithValue(error.response?.data.massege)
-                    } else {
-                        return rejectWithValue("failed to conection")
-                    }
-        
-                   
+            return rejectWithValue(isAxiosErrorHandler(error))
         
                 }
       
