@@ -19,6 +19,7 @@ export default defineConfig({
       "@util": path.resolve(__dirname, "./src/util"),
       "@styles": path.resolve(__dirname, "./src/styles"),
       "@type": path.resolve(__dirname, "./src/type"),
+      "@validation": path.resolve(__dirname, "./src/validation")
 
     }
   },

@@ -30,6 +30,7 @@
       "@util/*": ["src/util/*"],
       "@styles/*": ["src/styles/*"],
       "@type/*": ["src/type/*"],
+      "@validation/*":["src/validation/*"]
 
     },
 
