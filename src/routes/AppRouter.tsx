@@ -11,6 +11,8 @@ const Cart= lazy(()=>import('@pages/Cart'))
 const Wishlist= lazy(()=>import('@pages/Wishlist')) 
 import Error from '@pages/Error';
 import SuspenceComponent from '@components/common/SuspenceComponent/SuspenceComponent';
+import ProtectedRouter from '@components/Auth/ProtectedRouter';
+import Profile from '@pages/Profile';
 
 
 
@@ -34,7 +36,9 @@ const router = createBrowserRouter([
             },
             {
                 path:"wishlist",
-                element: <Suspense fallback={<SuspenceComponent/>}><Wishlist/></Suspense>
+                element:<ProtectedRouter>
+                    <Suspense fallback={<SuspenceComponent/>}><Wishlist/></Suspense>
+                </ProtectedRouter> 
             },
             {
                 path:"cart",
@@ -51,6 +55,14 @@ const router = createBrowserRouter([
             {
                 path:"register",
                 element: <Suspense fallback={<SuspenceComponent/>}><Register/></Suspense>
+            },
+            {
+                path:"profile",
+                element:
+                <ProtectedRouter>
+                    <Suspense fallback={<SuspenceComponent/>}><Profile/></Suspense>
+                </ProtectedRouter>
+                
             },
             {
                 path:"categories/products/:prefix",

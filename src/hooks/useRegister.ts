@@ -5,13 +5,15 @@ import useEmailAvailability from "@hooks/useEmailAvailability";
 import { postAuthThunk } from "@store/Auth/thunk/postAuthThunk";
 import { useAppDispatch, useAppSelector } from "@store/Hooks/hooks";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { resetLoadingError } from "@store/Auth/authSlice";
 
 
 
 const useRegister = () => {
   const navigate=useNavigate()
   const dispatch =useAppDispatch()
-  const {loading,error}=useAppSelector(state=>state.auth)
+  const {loading,error,accessToken}=useAppSelector(state=>state.auth)
     
 const {emailAvailibiltyCheck,checkEmailStatus,entredEamil,resetemailAvailibiltyCheck} = useEmailAvailability()
   const {
@@ -49,7 +51,15 @@ const {emailAvailibiltyCheck,checkEmailStatus,entredEamil,resetemailAvailibiltyC
 
   } 
 
-    return {onBlurHandler,onSubmit,checkEmailStatus,register,errors,handleSubmit,loading,error}
+  useEffect(()=>{
+      return ()=>{
+        dispatch(resetLoadingError())
+      }
+  
+    },[dispatch])
+
+    return {onBlurHandler,onSubmit,checkEmailStatus,register,errors,handleSubmit,loading,error,accessToken}
 }
 
 export default useRegister
+

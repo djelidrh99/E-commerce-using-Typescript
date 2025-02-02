@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Input from "@components/forms/Input";
 import useRegister from "@hooks/useRegister";
+import { Navigate } from "react-router-dom";
 
 function Register() {
   const {
@@ -15,7 +16,12 @@ function Register() {
     handleSubmit,
     error,
     loading,
+    accessToken
   } = useRegister();
+
+  if(accessToken) {
+    return <Navigate to="/"/>
+  }
 
   return (
     <>

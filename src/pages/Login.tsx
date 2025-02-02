@@ -1,27 +1,26 @@
 import Heading from "@components/common/Heading/Heading";
 import Input from "@components/forms/Input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, signInType } from "@validation/signInSchema";
-import { Alert, Col, Row } from "react-bootstrap";
+import { Alert, Col, Row, Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useSearchParams } from "react-router-dom";
+import useLogin from "@hooks/useLogin";
+import { Navigate } from "react-router-dom";
 
 function Login() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(useSearchParams());
-
   const {
-    register,
+    error,
+    errors,
     handleSubmit,
-    formState: { errors },
-  } = useForm<signInType>({
-    resolver: zodResolver(loginSchema),
-    mode: "onBlur",
-  });
+    loading,
+    onSubmit,
+    register,
+    searchParams,
+    accessToken,
+  } = useLogin();
 
-  const onSubmit: SubmitHandler<signInType> = (data) => console.log(data);
+  if (accessToken) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <>
@@ -31,6 +30,11 @@ function Login() {
           {searchParams.get("message") === "Account_Created" && (
             <Alert variant="success">
               Your account is successfully created,please Sign In
+            </Alert>
+          )}
+          {searchParams.get("message") === "Login_is_required" && (
+            <Alert variant="danger">
+              You need to log in to access this section.
             </Alert>
           )}
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -50,8 +54,31 @@ function Login() {
             />
 
             <Button className="mb-5" variant="primary" type="submit">
-              Login
+              {loading === "pending" ? (
+                <>
+                  <Spinner
+                    style={{ marginRight: "5px" }}
+                    animation="border"
+                    size="sm"
+                  />
+                  Loading...{" "}
+                </>
+              ) : (
+                "Sign In"
+              )}
             </Button>
+
+            {loading === "failed" && (
+              <p
+                style={{
+                  marginTop: "-45px",
+                  fontSize: ".875em",
+                  color: "#dc3545",
+                }}
+              >
+                {error}
+              </p>
+            )}
           </Form>
         </Col>
       </Row>
