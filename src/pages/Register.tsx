@@ -1,16 +1,25 @@
 import Heading from "@components/common/Heading/Heading";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Input from "@components/forms/Input";
 import useRegister from "@hooks/useRegister";
 
 function Register() {
-  const {checkEmailStatus,onBlurHandler,onSubmit,errors,register,handleSubmit} =useRegister()
-  
+  const {
+    checkEmailStatus,
+    onBlurHandler,
+    onSubmit,
+    errors,
+    register,
+    handleSubmit,
+    error,
+    loading,
+  } = useRegister();
+
   return (
     <>
-      <Heading title={"User Register"} />
+      <Heading title={"Sign Up"} />
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -30,12 +39,24 @@ function Register() {
 
             <Input
               register={register}
-              errors={errors.email?.message ? errors.email?.message as string: checkEmailStatus==="notAvaiulible"?"email is already used":""}
+              errors={
+                errors.email?.message
+                  ? (errors.email?.message as string)
+                  : checkEmailStatus === "notAvaiulible"
+                  ? "email is already used"
+                  : ""
+              }
               name={"email"}
-              label={"Email Adress"}
+              label={"Email Addresse"}
               onBlur={onBlurHandler}
-              checkLoading={checkEmailStatus==="checking"?"wait for checking...":""}
-              succesCheck={checkEmailStatus==="availible"?"email is available to use":""}
+              checkLoading={
+                checkEmailStatus === "checking" ? "wait for checking..." : ""
+              }
+              succesCheck={
+                checkEmailStatus === "availible"
+                  ? "email is available to use"
+                  : ""
+              }
             />
 
             <Input
@@ -55,8 +76,31 @@ function Register() {
             />
 
             <Button className="mb-5" variant="primary" type="submit">
-              Submit
+              {loading === "pending" ? (
+                <>
+                  <Spinner
+                    style={{ marginRight: "5px" }}
+                    animation="border"
+                    size="sm"
+                  />
+                  Loading...{" "}
+                </>
+              ) : (
+                "Submit"
+              )}
             </Button>
+
+            {loading === "failed" && (
+              <p
+                style={{
+                  marginTop: "-45px",
+                  fontSize: ".875em",
+                  color: "#dc3545",
+                }}
+              >
+                {error}
+              </p>
+            )}
           </Form>
         </Col>
       </Row>

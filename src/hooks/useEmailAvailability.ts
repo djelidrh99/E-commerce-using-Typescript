@@ -13,7 +13,7 @@ const useEmailAvailability = () => {
         setEntredEmail(email)
         setCheckEmailStatus(prev=>prev="checking")
         try {
-            const response = await axios.get(`/user?email=${email}`)
+            const response = await axios.get(`/users?email=${email}`)
              if ((response.data).length>0) {
                 setCheckEmailStatus(prev=>prev="notAvaiulible")  
              } else {
