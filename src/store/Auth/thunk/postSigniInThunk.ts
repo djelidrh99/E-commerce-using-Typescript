@@ -30,7 +30,6 @@ export const postSigniInThunk = createAsyncThunk("auth/postSigniInThunk",
         try {
             const res = await axios.post<ISigniIn>("/signin",formData)
 
-            console.log(res.data)
             return res.data
 
 

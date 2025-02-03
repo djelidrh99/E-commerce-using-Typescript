@@ -19,12 +19,7 @@ const itemsPersistConfig = {
 
 }
 
-const whishlistPersistConfig ={
-  key: 'whishlist',
-  storage,
-  whitelist: ['wishlistItems']
 
-}
 
 const authPersistConfig ={
   key:"auth",
@@ -36,7 +31,7 @@ const authPersistConfig ={
 const rootReducers = combineReducers({
   categories,
     products,
-    wishlist:persistReducer(whishlistPersistConfig, wishlist),
+    wishlist,
     cart:persistReducer(itemsPersistConfig, cart),
     auth:persistReducer(authPersistConfig,auth)
 

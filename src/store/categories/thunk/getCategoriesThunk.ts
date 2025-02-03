@@ -6,7 +6,7 @@ import axios from "axios"
 
 
 export const fetchCategories = createAsyncThunk(
-    'categories',
+    'categories/fetchCategories',
     async (_,thunkAPI) => {
 
         const {rejectWithValue,signal}=thunkAPI

@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 
-export const fetchShopingCart = createAsyncThunk('shopingCart',
+export const fetchShopingCart = createAsyncThunk('cart/shopingCart',
      async (_,thunkAPI)=> {
 
         const {getState,rejectWithValue,fulfillWithValue,signal}=thunkAPI

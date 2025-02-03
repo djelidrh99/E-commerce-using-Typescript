@@ -6,7 +6,7 @@ import { Tproducts ,Tloading} from '@type/type';
 // Define a type for the slice state
 export interface cartState {
         items: {[key:number]:number },
-        productFullInfo: Tproducts[],
+        CartProductFullInfo: Tproducts[],
         loading:Tloading,
         error:null|string
         
@@ -15,7 +15,7 @@ export interface cartState {
 // Define the initial state using that type
 const initialState:cartState = {
     items:{},
-    productFullInfo:[] ,
+    CartProductFullInfo:[] ,
     loading:"idle",
     error:null
     
@@ -34,12 +34,12 @@ export const cartSlice = createSlice({
       }
     },
     deleteProductFromShopingCart:(state,action)=>{
-      const updateCart = (state.productFullInfo).filter((item)=>{
+      const updateCart = (state.CartProductFullInfo).filter((item)=>{
         return item.id !== action.payload
       })
       delete state.items[action.payload]
 
-      state.productFullInfo=updateCart
+      state.CartProductFullInfo=updateCart
 
     },
     updateItems:(state,action)=>{
@@ -49,7 +49,7 @@ export const cartSlice = createSlice({
 
     },
     cartProductsCleanUp:(state)=>{
-      state.productFullInfo=[]
+      state.CartProductFullInfo=[]
     }
   },
   extraReducers:(builser)=>{
@@ -59,7 +59,7 @@ export const cartSlice = createSlice({
     }).addCase(fetchShopingCart.fulfilled,(state,action)=>{
       state.loading="succeeded"
       state.error=null
-      state.productFullInfo=action.payload
+      state.CartProductFullInfo=action.payload
 
     }).addCase(fetchShopingCart.rejected,(state,action)=>{
       state.loading="failed"

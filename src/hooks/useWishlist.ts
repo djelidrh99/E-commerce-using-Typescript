@@ -6,18 +6,21 @@ import { wishlistCleanUp } from "@store/Wishlist/wishlistSlice";
 const useWishlist = () => {
   const dispatch = useAppDispatch();
   const wishlistItem = useAppSelector((state) => state.wishlist.wishlistItems);
+  const {accessToken}= useAppSelector(state=>state.auth)
   const wishlistPoduct = useAppSelector(
     (state) => state.wishlist.productFullInfo
   );
   const {loading,error} = useAppSelector((state) => state.wishlist);
 
   useEffect(() => {
-    const promise = dispatch(fetchWishlist());
+    
+      const promise = dispatch(fetchWishlist("productFullInfo"));
+    
     return () => {
       dispatch(wishlistCleanUp());
       promise.abort()
     };
-  }, [dispatch]);
+  }, [dispatch,accessToken]);
 
   const wishlistFullInfo = wishlistPoduct.map((item) => {
     return { ...item, isLiked: wishlistItem.includes(item.id) };

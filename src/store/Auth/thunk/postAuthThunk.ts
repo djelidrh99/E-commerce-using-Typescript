@@ -17,7 +17,6 @@ export const postAuthThunk = createAsyncThunk("auth/postAuthThunk",
         try {
             const res = await axios.post("/register",formData)
 
-            console.log(res.data.accessToken)
             return res.data
 
 

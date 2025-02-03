@@ -5,7 +5,7 @@ import { cartProductsCleanUp, updateItems } from "@store/Cart/carteSlice";
 
 const useCart = () => {
   const dispatch = useAppDispatch();
-  const shopingList = useAppSelector((state) => state.cart.productFullInfo);
+  const shopingList = useAppSelector((state) => state.cart.CartProductFullInfo);
   const loading = useAppSelector((state) => state.cart.loading);
   const error = useAppSelector((state) => state.cart.error);
 

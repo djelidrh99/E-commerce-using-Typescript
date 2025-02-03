@@ -7,6 +7,8 @@ import style from "./style.module.css"
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@store/Hooks/hooks';
 import { authLogOut } from '@store/Auth/authSlice';
+import { useEffect } from 'react';
+import { fetchWishlist } from '@store/Wishlist/thunk/getWishlistThunk';
 
 const {HeaderContainer}=style
 
@@ -16,6 +18,12 @@ function Header() {
 
   const {accessToken,user} = useAppSelector(state=>state.auth)
   const dispatch =useAppDispatch()
+
+  useEffect(()=>{
+    if(accessToken) {
+      dispatch(fetchWishlist("itemId"))
+    }
+  },[dispatch,accessToken])
   
  
 
@@ -45,7 +53,7 @@ function Header() {
                 Orders
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/login" onClick={()=>{dispatch(authLogOut())}} >
+              <NavDropdown.Item as={NavLink} to="/login?" onClick={()=>{dispatch(authLogOut())}} >
                 Log Out
               </NavDropdown.Item>
             </NavDropdown> :

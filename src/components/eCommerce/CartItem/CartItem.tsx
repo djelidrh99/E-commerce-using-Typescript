@@ -14,6 +14,7 @@ const CartItem = ({
       {shopingList.length === 0 ? (
         <Empty section={"Cart"}/>
       ) : (
+        
         shopingList.map((item) => {
           return (
             <CartShoping
