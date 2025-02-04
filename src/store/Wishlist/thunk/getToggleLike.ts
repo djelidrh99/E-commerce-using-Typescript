@@ -21,7 +21,7 @@ export const getToggleLike  = createAsyncThunk(
             return {type:"remove", id}
 
         }else {
-            await axios.post(`/wishlist?userId=1`,{userId:user?.id,productId:id})
+            await axios.post(`/wishlist?${user?.id}`,{userId:user?.id,productId:id})
             return {type:"add", id}
         }
 

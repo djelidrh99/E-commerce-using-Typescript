@@ -8,6 +8,7 @@ import { Spinner } from "react-bootstrap";
 import LikeFill from "@assets/svg/like.svg?react";
 import Like from "@assets/svg/like-fill.svg?react";
 import { getToggleLike } from "@store/Wishlist/thunk/getToggleLike";
+import ProductInfo from "../ProductInfo/ProductInfo";
 
 const { imageContainer, boxContainer, likedContainer } = style;
 
@@ -16,6 +17,7 @@ const Product = memo(({ title, img, price, id, max, isLiked }: Tproducts) => {
   const items = useAppSelector((state) => state.cart.items);
   const [isButtonClicked, setButtonIsClicked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const {accessToken}=useAppSelector(state=>state.auth)
 
   useEffect(() => {
     const buttonSetTime = setTimeout(() => {
@@ -45,8 +47,8 @@ const Product = memo(({ title, img, price, id, max, isLiked }: Tproducts) => {
 
   return (
     <div className={boxContainer}>
-      <div className={imageContainer}>
-        <img title={title} src={img} alt={title} />
+      <ProductInfo title={title} img={img} price={price} direction="column" >
+      {accessToken && 
         <div
           className={likedContainer}
           onClick={() => {
@@ -60,10 +62,7 @@ const Product = memo(({ title, img, price, id, max, isLiked }: Tproducts) => {
           ) : (
             <LikeFill />
           )}
-        </div>
-      </div>
-      <h5>{title}</h5>
-      <h6>{price}</h6>
+        </div> }
       <Button
         onClick={() => {
           handlerAddToCart(id);
@@ -84,6 +83,8 @@ const Product = memo(({ title, img, price, id, max, isLiked }: Tproducts) => {
           "Add To Cart"
         )}
       </Button>
+     
+      </ProductInfo>
     </div>
   );
 });

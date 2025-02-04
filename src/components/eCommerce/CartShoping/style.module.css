@@ -15,33 +15,6 @@
 
 
 
-.leftSide {
-    display: flex;
-    gap: 20px;
-
-}
-
-.leftSide .imgContainer {
-    height: 200px;
-    
-}
-
-.leftSide .imgContainer img {
-    height: 100%;
-}
-
-
-
-.leftSide h6 {
-    font-size: 15px;
-
-}
-
-
-.leftSide>div:last-child {
-    display: flex;
-    flex-direction: column;
-}
 
 
 
@@ -54,10 +27,3 @@
 
 
 
-@media (max-width: 500px) {
-    .leftSide .imgContainer {
-        height: 140px;
-        
-    }
-
-}

@@ -6,6 +6,7 @@ import { persistStore, persistReducer, FLUSH, PERSIST, PURGE, PAUSE, REGISTER, R
 import storage from 'redux-persist/lib/storage'
 import  wishlist  from './Wishlist/wishlistSlice'
 import auth from './Auth/authSlice'
+import  placeOrders from './placeOrders/placeOrderSlice'
 
 
 
@@ -33,7 +34,8 @@ const rootReducers = combineReducers({
     products,
     wishlist,
     cart:persistReducer(itemsPersistConfig, cart),
-    auth:persistReducer(authPersistConfig,auth)
+    auth:persistReducer(authPersistConfig,auth),
+    placeOrders
 
 })
 

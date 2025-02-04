@@ -6,6 +6,7 @@ import {
   deleteProductFromShopingCart,
 } from "@store/Cart/carteSlice";
 import { memo } from "react";
+import ProductInfo from "../ProductInfo/ProductInfo";
 
 const { shopingContainer, removeButton, leftSide, imgContainer } = style;
 
@@ -31,14 +32,9 @@ const CartShoping = memo(
 
     return (
       <div className={shopingContainer}>
-        <div className={leftSide}>
-          <div className={imgContainer}>
-            <img src={img} alt={title} />
-          </div>
-          <div>
-            <h5>{title}</h5>
-            <h6>{price}</h6>
-            <div style={{ flexGrow: 1 }}></div>
+        <ProductInfo title={title} img={img} price={price} direction="row">
+          <div style={{flexGrow:1}}></div>
+        
 
             <Button
               onClick={() => {
@@ -49,8 +45,8 @@ const CartShoping = memo(
             >
               Remove
             </Button>
-          </div>
-        </div>
+          
+        </ProductInfo>
 
         <div>
           <h5>Quantity</h5>

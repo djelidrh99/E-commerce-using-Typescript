@@ -8,6 +8,7 @@ const useCart = () => {
   const shopingList = useAppSelector((state) => state.cart.CartProductFullInfo);
   const loading = useAppSelector((state) => state.cart.loading);
   const error = useAppSelector((state) => state.cart.error);
+  const {accessToken}=useAppSelector(state=>state.auth)
 
   useEffect(() => {
     const promise =dispatch(fetchShopingCart());
@@ -26,7 +27,7 @@ const useCart = () => {
     [dispatch]
   );
 
-  return { loading, error, shopingList, handelQuantity };
+  return { loading, error, shopingList, handelQuantity,accessToken };
 };
 
 export default useCart;
