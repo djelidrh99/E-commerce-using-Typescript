@@ -21,15 +21,12 @@ export const postPlaceOrdersThunk=createAsyncThunk("postOrders/postPlaceOrdersTh
     }
    })
 
-   const res = await axios.post("orders",{userId:auth.user?.id,totalPrice:totalPrice,placeOrders:placeOrderProduct})
-
-   return res.data
-
-
    try {
-    
+       const res = await axios.post("orders",{userId:auth.user?.id,totalPrice:totalPrice,placeOrders:placeOrderProduct})
+
+       return res.data
    } catch (error) {
-    return rejectWithValue(isAxiosErrorHandler(error))
+       return rejectWithValue(isAxiosErrorHandler(error))
    }
 
 

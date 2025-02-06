@@ -1,20 +1,26 @@
 import { Tproducts } from "@type/type";
 import CartShoping from "../CartShoping/CartShoping";
 import Empty from "@components/common/Empty/Empty";
+import LottieHandler from "@components/feedback/LottieHandler/LottieHandler";
 
-type TshopingCart = { shopingList: Tproducts[] };
+type TshopingCart = { shopingList: Tproducts[]; placeOrderStatus?: string };
 const CartItem = ({
   shopingList,
   handelQuantity,
+  placeOrderStatus,
 }: TshopingCart & {
   handelQuantity: (e: React.ChangeEvent<HTMLSelectElement>, id: number) => void;
 }) => {
   return (
     <>
-      {shopingList.length === 0 ? (
-        <Empty section={"Cart"}/>
+      {shopingList.length === 0 && placeOrderStatus !== "succeeded" ? (
+        <Empty section={"Cart"} />
+      ) : placeOrderStatus === "succeeded" ? (
+        <LottieHandler
+          type={"success"}
+          message={`Your Order has been placed successfuly`}
+        />
       ) : (
-        
         shopingList.map((item) => {
           return (
             <CartShoping

@@ -15,7 +15,7 @@ const useLogin = () => {
     const dispatch =useAppDispatch()
     const {loading,error,accessToken}=useAppSelector(state=>state.auth)
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log(useSearchParams());
+    
   
     const {
       register,

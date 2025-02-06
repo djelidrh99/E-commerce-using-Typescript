@@ -76,6 +76,7 @@ const Product = memo(({ title, img, price, id, max, isLiked }: Tproducts) => {
               style={{ marginRight: "5px" }}
               animation="border"
               size="sm"
+              variant="primary"
             />
             Loading...{" "}
           </>

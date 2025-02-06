@@ -11,7 +11,7 @@ export const fetchCategories = createAsyncThunk(
 
         const {rejectWithValue,signal}=thunkAPI
         try {
-            const response = await axios.get<Tcategories[]>("/categories",{signal})
+            const response = await axios.get<Tcategories>("/categories",{signal})
 
             return response.data
             // return {id:categories.id,title:categories.title,prefix:categories.prefix,img:categories.img }

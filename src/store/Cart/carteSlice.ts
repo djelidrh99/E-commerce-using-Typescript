@@ -50,6 +50,10 @@ export const cartSlice = createSlice({
     },
     cartProductsCleanUp:(state)=>{
       state.CartProductFullInfo=[]
+    },
+    resetItemAndCartProduct:(state)=>{
+      state.items={}
+      state.CartProductFullInfo=[]
     }
   },
   extraReducers:(builser)=>{
@@ -71,7 +75,7 @@ export const cartSlice = createSlice({
    
 })
 
-export const {addProductToCart,deleteProductFromShopingCart,updateItems,cartProductsCleanUp} = cartSlice.actions
+export const {addProductToCart,deleteProductFromShopingCart,updateItems,cartProductsCleanUp,resetItemAndCartProduct} = cartSlice.actions
 
 
 

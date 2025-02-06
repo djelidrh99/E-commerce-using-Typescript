@@ -88,6 +88,7 @@ function Register() {
                     style={{ marginRight: "5px" }}
                     animation="border"
                     size="sm"
+                    variant="primary"
                   />
                   Loading...{" "}
                 </>

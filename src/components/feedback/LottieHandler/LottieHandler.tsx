@@ -4,6 +4,7 @@ import empty from '@assets/lottie/animations/empty.json'
 import error from '@assets/lottie/animations/loadingError.json'
 import loading from '@assets/lottie/animations/loading.json'
 import notFund from '@assets/lottie/animations/error.json'
+import success from '@assets/lottie/animations/success.json'
 
 
 const {Container,lottieContainer} = style
@@ -12,7 +13,8 @@ const lottieAnimation = {
     empty: empty,
     error: error,
     loading:loading,
-    notFund: notFund
+    notFund: notFund,
+    success:success
 }
 
 type TLottieHandlerProps = {

@@ -20,7 +20,7 @@ const useEmailAvailability = () => {
                 setCheckEmailStatus(prev=>prev="availible")
             }
 
-             console.log(checkEmailStatus)
+            
            
         } catch {
             setCheckEmailStatus(prev=>prev="failed")        }

@@ -1,7 +1,8 @@
+import TableSkeleton from "@components/feedback/Skeleton/TableSkeleton"
 
-function About() {
+const About = () => {
   return (
-    <div>About</div>
+    <TableSkeleton></TableSkeleton>
   )
 }
 

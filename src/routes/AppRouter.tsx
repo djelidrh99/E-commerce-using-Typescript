@@ -13,6 +13,8 @@ import Error from '@pages/Error';
 import SuspenceComponent from '@components/common/SuspenceComponent/SuspenceComponent';
 import ProtectedRouter from '@components/Auth/ProtectedRouter';
 import Profile from '@pages/Profile';
+import ProfileLayout from '@layouts/ProfileLayout';
+import Orders from '@pages/Orders';
 
 
 
@@ -60,8 +62,19 @@ const router = createBrowserRouter([
                 path:"profile",
                 element:
                 <ProtectedRouter>
-                    <Suspense fallback={<SuspenceComponent/>}><Profile/></Suspense>
-                </ProtectedRouter>
+                    <Suspense fallback={<SuspenceComponent/>}><ProfileLayout/></Suspense>
+                </ProtectedRouter>,
+                children:[
+                    {
+                        index:true,
+                        element:<Profile/>
+                    },
+                    {
+                        path:"orders",
+                        element:<Orders/>
+                    } 
+
+                ]
                 
             },
             {

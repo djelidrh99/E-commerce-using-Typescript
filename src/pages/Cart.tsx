@@ -5,7 +5,7 @@ import CartItem from "@components/eCommerce/CartItem/CartItem";
 import useCart from "@hooks/useCart";
 
 const Carte = () => {
-const {handelQuantity,error,loading,shopingList,accessToken} = useCart()
+const {handelQuantity,error,loading,shopingList,accessToken,placeOrderStatus} = useCart()
 
  
   return (
@@ -13,9 +13,9 @@ const {handelQuantity,error,loading,shopingList,accessToken} = useCart()
       <Loading status={loading} error={error}  type={"cart"}>
         <Heading title="Cart"/>
 
-        <CartItem shopingList={shopingList} handelQuantity={handelQuantity}  />
-
-        <SubTotal shopingList={shopingList} accessToken={accessToken} />
+        <CartItem shopingList={shopingList} handelQuantity={handelQuantity} placeOrderStatus={placeOrderStatus}  />
+         {shopingList.length!==0  && <SubTotal shopingList={shopingList} accessToken={accessToken} /> }  
+        
       </Loading>
     </>
   );
